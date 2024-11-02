@@ -1,0 +1,179 @@
+@font-face {
+    font-family: 'GothamBold';
+    src: url('Spotify-Font/GothamBold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'GothamBoldItalic';
+    src: url('Spotify-Font/GothamBoldItalic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'GothamBook';
+    src: url('Spotify-Font/GothamBook.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'GothamLight';
+    src: url('Spotify-Font/GothamLight.ttf') format('truetype');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'GothamBook', Arial, sans-serif;
+    background: url('slike/ozadje.jpg') no-repeat center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+    backdrop-filter: blur(5px);
+}
+
+/* Black background for loader */
+#loader-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 0.3s ease-out;
+}
+
+.container {
+    background-color: rgba(0, 0, 0, 0.85);
+    border-radius: 10px;
+    padding: 40px;
+    width: 400px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease-in-out;
+}
+
+.container:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+}
+
+.logo img {
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"],
+select,
+input[type="tel"] {
+    width: 100%;
+    padding: 12px 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: none;
+    transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    font-family: 'GothamLight', Arial, sans-serif;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="text"]:focus,
+select:focus,
+input[type="tel"]:focus {
+    box-shadow: 0 0 8px #1DB954;
+    outline: none;
+    border: 2px solid #1DB954; /* Add border on focus */
+    background-color: rgba(255, 255, 255, 0.3); /* Lighten background */
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #1DB954;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Added box-shadow */
+}
+
+button:hover {
+    background-color: #1ed760;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Add shadow on hover */
+}
+
+select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: none;
+    font-family: 'GothamLight', Arial, sans-serif;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+/* Style dropdown options */
+select option {
+    background-color: #333;
+    color: white;
+    padding: 10px; /* Add padding for better usability */
+}
+
+select option:hover {
+    background-color: #1DB954; /* Change hover color */
+    color: white; /* Keep text color white */
+}
+
+p {
+    margin-top: 20px;
+    font-family: 'GothamBookItalic', Arial, sans-serif;
+}
+
+a {
+    color: #1DB954;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+    font-family: 'GothamBoldItalic', Arial, sans-serif;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #1ed760;
+}
+
+/* Hide the loader smoothly */
+#loader-container.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+@media (max-width: 500px) {
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .logo img {
+        width: 120px;
+    }
+
+    button {
+        font-size: 14px;
+    }
+}
