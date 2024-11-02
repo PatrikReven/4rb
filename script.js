@@ -1,7 +1,7 @@
 // script.js
 
-window.onload = function() {
-    setTimeout(function() {
+window.onload = function () {
+    setTimeout(function () {
         const loader = document.getElementById('loader-container');
         loader.classList.add('fade-out'); // Adds fade-out class for smooth transition
         setTimeout(() => loader.style.display = 'none', 300); // Hides loader after fade-out
@@ -10,7 +10,7 @@ window.onload = function() {
 };
 
 // Toggle between login and register forms
-document.getElementById('registerLink').addEventListener('click', function(e) {
+document.getElementById('registerLink').addEventListener('click', function (e) {
     e.preventDefault();
     document.getElementById('loginForm').style.display = 'none';
     document.getElementById('loginTitle').style.display = 'none';
@@ -18,7 +18,7 @@ document.getElementById('registerLink').addEventListener('click', function(e) {
     document.getElementById('registerTitle').style.display = 'block';
 });
 
-document.getElementById('loginLink').addEventListener('click', function(e) {
+document.getElementById('loginLink').addEventListener('click', function (e) {
     e.preventDefault();
     document.getElementById('loginForm').style.display = 'block';
     document.getElementById('loginTitle').style.display = 'block';
@@ -221,7 +221,7 @@ const countryPrefixes = {
 };
 
 // When the user selects a country, set the phone number input field with the prefix.
-document.getElementById('country').addEventListener('change', function() {
+document.getElementById('country').addEventListener('change', function () {
     const selectedCountry = this.value;
     const phoneNumberInput = document.getElementById('phoneNumber');
 
@@ -231,7 +231,7 @@ document.getElementById('country').addEventListener('change', function() {
         phoneNumberInput.maxLength = prefix.length + 9; // Prefix + 9 additional digits
 
         // Add an event listener to control input after the prefix
-        phoneNumberInput.addEventListener('input', function() {
+        phoneNumberInput.addEventListener('input', function () {
             // Retain the prefix, and allow only 9 additional digits after the prefix
             const typedValue = phoneNumberInput.value;
             if (!typedValue.startsWith(prefix)) {

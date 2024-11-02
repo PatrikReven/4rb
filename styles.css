@@ -95,8 +95,10 @@ select:focus,
 input[type="tel"]:focus {
     box-shadow: 0 0 8px #1DB954;
     outline: none;
-    border: 2px solid #1DB954; /* Add border on focus */
-    background-color: rgba(255, 255, 255, 0.3); /* Lighten background */
+    border: 2px solid #1DB954;
+    /* Add border on focus */
+    background-color: rgba(255, 255, 255, 0.3);
+    /* Lighten background */
 }
 
 button {
@@ -108,13 +110,15 @@ button {
     color: white;
     font-size: 16px;
     cursor: pointer;
-    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Added box-shadow */
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    /* Added box-shadow */
 }
 
 button:hover {
     background-color: #1ed760;
     transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Add shadow on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    /* Add shadow on hover */
 }
 
 select {
@@ -132,12 +136,15 @@ select {
 select option {
     background-color: #333;
     color: white;
-    padding: 10px; /* Add padding for better usability */
+    padding: 10px;
+    /* Add padding for better usability */
 }
 
 select option:hover {
-    background-color: #1DB954; /* Change hover color */
-    color: white; /* Keep text color white */
+    background-color: #1DB954;
+    /* Change hover color */
+    color: white;
+    /* Keep text color white */
 }
 
 p {
