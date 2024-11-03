@@ -1,33 +1,33 @@
 // script.js
 
-// On page load, show loader and then fade to content
+// Ob nalaganju strani prikaže nalagalnik in nato prikrije vsebino
 window.onload = function () {
     setTimeout(function () {
         const loader = document.getElementById('loader-container');
-        loader.classList.add('fade-out');
-        setTimeout(() => loader.style.display = 'none', 300);
-        document.getElementById('content').style.display = 'block';
+        loader.classList.add('fade-out'); // Doda animacijo za izginjanje nalagalnika
+        setTimeout(() => loader.style.display = 'none', 300); // Skrije nalagalnik po animaciji
+        document.getElementById('content').style.display = 'block'; // Prikaže vsebino strani
     }, 4700);
 };
 
-// Toggle between login and register forms
+// Preklaplja med obrazci za prijavo in registracijo
 document.getElementById('registerLink').addEventListener('click', function (e) {
-    e.preventDefault();
-    document.getElementById('loginForm').style.display = 'none';
-    document.getElementById('loginTitle').style.display = 'none';
-    document.getElementById('registerForm').style.display = 'block';
-    document.getElementById('registerTitle').style.display = 'block';
+    e.preventDefault(); // Prepreči privzeto vedenje povezave
+    document.getElementById('loginForm').style.display = 'none'; // Skrije obrazec za prijavo
+    document.getElementById('loginTitle').style.display = 'none'; // Skrije naslov za prijavo
+    document.getElementById('registerForm').style.display = 'block'; // Prikaže obrazec za registracijo
+    document.getElementById('registerTitle').style.display = 'block'; // Prikaže naslov za registracijo
 });
 
 document.getElementById('loginLink').addEventListener('click', function (e) {
-    e.preventDefault();
-    document.getElementById('loginForm').style.display = 'block';
-    document.getElementById('loginTitle').style.display = 'block';
-    document.getElementById('registerForm').style.display = 'none';
-    document.getElementById('registerTitle').style.display = 'none';
+    e.preventDefault(); // Prepreči privzeto vedenje povezave
+    document.getElementById('loginForm').style.display = 'block'; // Prikaže obrazec za prijavo
+    document.getElementById('loginTitle').style.display = 'block'; // Prikaže naslov za prijavo
+    document.getElementById('registerForm').style.display = 'none'; // Skrije obrazec za registracijo
+    document.getElementById('registerTitle').style.display = 'none'; // Skrije naslov za registracijo
 });
 
-// Country phone code functionality
+// Funkcionalnost za prikaz predpone države za telefonsko številko
 const countryPrefixes = {
     "Afghanistan": "+93",
     "Albania": "+355",
@@ -221,43 +221,50 @@ const countryPrefixes = {
     "Zambia": "+260",
     "Zimbabwe": "+263"
 };
-
+//document.getElementById('country'): Poišče element z ID-jem country. To je verjetno <select> element, ki vsebuje seznam držav.
+//.addEventListener('change', function () {...}): Dodaja "listener" (poslušalec dogodkov) na izbranem elementu (country), ki zazna dogodek change. To pomeni, da se vsakič, 
+//ko uporabnik spremeni izbiro v tem seznamu držav, izvede določena funkcija.
+//const selectedCountry = this.value;: Shrani vrednost trenutno izbrane države v spremenljivko selectedCountry. Ključna beseda this tukaj predstavlja element country, 
+//ki je bil izbran (spremenjen) v tistem trenutku.
+//const phoneNumberInput = document.getElementById('phoneNumber');: Poišče element z ID-jem phoneNumber, ki naj bi bil vnosno polje za telefonsko številko.
 document.getElementById('country').addEventListener('change', function () {
     const selectedCountry = this.value;
     const phoneNumberInput = document.getElementById('phoneNumber');
 
+    // Doda predpono glede na izbrano državo in nastavi največjo dolžino telefonske številke
     if (selectedCountry in countryPrefixes) {
         const prefix = countryPrefixes[selectedCountry];
         phoneNumberInput.value = prefix + " ";
         phoneNumberInput.maxLength = prefix.length + 12;
 
+        // Preveri, če uporabnik pravilno vnaša številko s predpono
         phoneNumberInput.addEventListener('input', function () {
             const typedValue = phoneNumberInput.value;
             if (!typedValue.startsWith(prefix)) {
                 phoneNumberInput.value = prefix + " ";
             }
-            const digitsOnly = typedValue.slice(prefix.length).replace(/\D/g, '');
+            const digitsOnly = typedValue.slice(prefix.length).replace(/\D/g, ''); // Uporablja le številke
             phoneNumberInput.value = prefix + " " + digitsOnly.slice(0, 12);
         });
     }
 });
 
-// Validation for matching passwords and 12-digit phone number
+// Preverjanje ujemanja gesel in 12-mestne telefonske številke
 document.getElementById('registerForm').addEventListener('submit', function (e) {
     const password = document.getElementById('regPassword').value;
     const confirmPassword = document.getElementById('confirmPassword').value;
-    const phoneNumber = document.getElementById('phoneNumber').value.replace(/\D/g, ''); // Remove non-numeric characters
+    const phoneNumber = document.getElementById('phoneNumber').value.replace(/\D/g, ''); // Odstrani vse znake, razen številk
 
-    // Check if passwords match
+    // Preveri, če se gesli ujemata
     if (password !== confirmPassword) {
-        e.preventDefault(); // Prevent form submission
-        alert("Passwords do not match. Please try again.");
+        e.preventDefault(); // Prepreči oddajo obrazca
+        alert("Gesli se ne ujemata. Poskusite znova.");
         return;
     }
 
-    // Check if phone number has exactly 12 digits
+    // Preveri, če telefonska številka vsebuje natanko 12 številk
     if (phoneNumber.length !== 12) {
-        e.preventDefault(); // Prevent form submission
-        alert("Phone number must contain exactly 12 digits.");
+        e.preventDefault(); // Prepreči oddajo obrazca
+        alert("Telefonska številka mora vsebovati 12 številk.");
     }
 });

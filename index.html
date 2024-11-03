@@ -5,36 +5,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spotify - Login or Register</title>
+    <!-- Ikona spletne strani -->
     <link rel="icon" type="image/x-icon" href="slike/favicon.ico">
+    <!-- Povezava na CSS datoteko za oblikovanje -->
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
+    <!-- Sekcija za nalagalnik, ki se prikaže ob nalaganju strani -->
     <div id="loader-container">
         <img src="slike/spotify.gif" alt="Loading...">
     </div>
 
+    <!-- Vsebina, ki je skrita dokler se stran ne naloži popolnoma -->
     <div id="content" class="container" style="display: none;">
+        <!-- Logo Spotify -->
         <div class="logo">
             <img src="slike/spotify-logo.png" alt="Spotify Logo">
         </div>
+
+        <!-- Obrazec za prijavo -->
         <div class="form-container">
             <h2 id="loginTitle">Login to Spotify</h2>
             <form id="loginForm">
+                <!-- Polje za vnos e-pošte -->
                 <input type="email" id="email" name="email" placeholder="Email" required>
+                <!-- Polje za vnos gesla -->
                 <input type="password" id="password" name="password" placeholder="Password" required>
+                <!-- Gumb za prijavo -->
                 <button type="submit">Login</button>
+                <!-- Povezava za prehod na registracijo -->
                 <p>Don't have an account? <a href="#" id="registerLink">Register here</a></p>
             </form>
 
+            <!-- Obrazec za registracijo, ki je skrit ob nalaganju -->
             <h2 id="registerTitle" style="display: none;">Register for Spotify</h2>
             <form id="registerForm" style="display: none;">
+                <!-- Polje za vnos uporabniškega imena -->
                 <input type="text" id="username" name="username" placeholder="Username" required>
+                <!-- Polje za vnos e-pošte -->
                 <input type="email" id="regEmail" name="email" placeholder="Email" required>
+                <!-- Polje za vnos gesla -->
                 <input type="password" id="regPassword" name="password" placeholder="Password" required>
-                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password"
-                    required>
+                <!-- Polje za potrditev gesla -->
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
 
+                <!-- Izbirno polje za državo -->
                 <select id="country" name="country" required>
                     <option value="">Select your country</option>
                     <option value="Afghanistan">Afghanistan (+93)</option>
@@ -236,14 +252,18 @@
                     <option value="Zambia">Zambia (+260)</option>
                     <option value="Zimbabwe">Zimbabwe (+263)</option>
                 </select>
+                <!-- Polje za vnos telefonske številke -->
                 <input type="tel" id="phoneNumber" name="phone" placeholder="Phone Number" required maxlength="17">
 
+                <!-- Gumb za registracijo -->
                 <button type="submit">Register</button>
+                <!-- Povezava za prehod nazaj na prijavo -->
                 <p>Already have an account? <a href="#" id="loginLink">Login here</a></p>
             </form>
         </div>
     </div>
 
+    <!-- Vključitev JavaScript datoteke -->
     <script src="script.js"></script>
 </body>
 
