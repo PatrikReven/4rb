@@ -235,7 +235,7 @@ document.getElementById('country').addEventListener('change', function () {
     if (selectedCountry in countryPrefixes) {
         const prefix = countryPrefixes[selectedCountry];
         phoneNumberInput.value = prefix + " ";
-        phoneNumberInput.maxLength = prefix.length + 12;
+        phoneNumberInput.maxLength = prefix.length + 10;
 
         // Preveri, če uporabnik pravilno vnaša številko s predpono
         phoneNumberInput.addEventListener('input', function () {
@@ -244,7 +244,7 @@ document.getElementById('country').addEventListener('change', function () {
                 phoneNumberInput.value = prefix + " ";
             }
             const digitsOnly = typedValue.slice(prefix.length).replace(/\D/g, ''); // Uporablja le številke
-            phoneNumberInput.value = prefix + " " + digitsOnly.slice(0, 12);
+            phoneNumberInput.value = prefix + " " + digitsOnly.slice(0, 10);
         });
     }
 });
@@ -265,6 +265,6 @@ document.getElementById('registerForm').addEventListener('submit', function (e) 
     // Preveri, če telefonska številka vsebuje natanko 12 številk
     if (phoneNumber.length !== 12) {
         e.preventDefault(); // Prepreči oddajo obrazca
-        alert("Telefonska številka mora vsebovati 12 številk.");
+        alert("Telefonska številka mora vsebovati 9 številk.");
     }
 });
