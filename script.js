@@ -1,10 +1,11 @@
 // script.js
 
+// On page load, show loader and then fade to content
 window.onload = function () {
     setTimeout(function () {
         const loader = document.getElementById('loader-container');
-        loader.classList.add('fade-out'); // Adds fade-out class for smooth transition
-        setTimeout(() => loader.style.display = 'none', 300); // Hides loader after fade-out
+        loader.classList.add('fade-out');
+        setTimeout(() => loader.style.display = 'none', 300);
         document.getElementById('content').style.display = 'block';
     }, 4700);
 };
@@ -26,6 +27,7 @@ document.getElementById('loginLink').addEventListener('click', function (e) {
     document.getElementById('registerTitle').style.display = 'none';
 });
 
+// Country phone code functionality
 const countryPrefixes = {
     "Afghanistan": "+93",
     "Albania": "+355",
@@ -220,7 +222,6 @@ const countryPrefixes = {
     "Zimbabwe": "+263"
 };
 
-// When the user selects a country, set the phone number input field with the prefix.
 document.getElementById('country').addEventListener('change', function () {
     const selectedCountry = this.value;
     const phoneNumberInput = document.getElementById('phoneNumber');
@@ -228,18 +229,35 @@ document.getElementById('country').addEventListener('change', function () {
     if (selectedCountry in countryPrefixes) {
         const prefix = countryPrefixes[selectedCountry];
         phoneNumberInput.value = prefix + " ";
-        phoneNumberInput.maxLength = prefix.length + 9; // Prefix + 9 additional digits
+        phoneNumberInput.maxLength = prefix.length + 9;
 
-        // Add an event listener to control input after the prefix
         phoneNumberInput.addEventListener('input', function () {
-            // Retain the prefix, and allow only 9 additional digits after the prefix
             const typedValue = phoneNumberInput.value;
             if (!typedValue.startsWith(prefix)) {
                 phoneNumberInput.value = prefix + " ";
             }
-            // Remove any non-numeric characters after the prefix
             const digitsOnly = typedValue.slice(prefix.length).replace(/\D/g, '');
-            phoneNumberInput.value = prefix + " " + digitsOnly.slice(0, 9); // Allow only up to 9 digits
+            phoneNumberInput.value = prefix + " " + digitsOnly.slice(0, 9);
         });
+    }
+});
+
+// Validation for matching passwords and 9-digit phone number
+document.getElementById('registerForm').addEventListener('submit', function (e) {
+    const password = document.getElementById('regPassword').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    const phoneNumber = document.getElementById('phoneNumber').value.replace(/\D/g, ''); // Remove non-numeric characters
+
+    // Check if passwords match
+    if (password !== confirmPassword) {
+        e.preventDefault(); // Prevent form submission
+        alert("Passwords do not match. Please try again.");
+        return;
+    }
+
+    // Check if phone number has exactly 9 digits
+    if (phoneNumber.length !== 9) {
+        e.preventDefault(); // Prevent form submission
+        alert("Phone number must contain exactly 9 digits.");
     }
 });
