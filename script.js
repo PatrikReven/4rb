@@ -229,7 +229,7 @@ document.getElementById('country').addEventListener('change', function () {
     if (selectedCountry in countryPrefixes) {
         const prefix = countryPrefixes[selectedCountry];
         phoneNumberInput.value = prefix + " ";
-        phoneNumberInput.maxLength = prefix.length + 9;
+        phoneNumberInput.maxLength = prefix.length + 12;
 
         phoneNumberInput.addEventListener('input', function () {
             const typedValue = phoneNumberInput.value;
@@ -237,12 +237,12 @@ document.getElementById('country').addEventListener('change', function () {
                 phoneNumberInput.value = prefix + " ";
             }
             const digitsOnly = typedValue.slice(prefix.length).replace(/\D/g, '');
-            phoneNumberInput.value = prefix + " " + digitsOnly.slice(0, 9);
+            phoneNumberInput.value = prefix + " " + digitsOnly.slice(0, 12);
         });
     }
 });
 
-// Validation for matching passwords and 9-digit phone number
+// Validation for matching passwords and 12-digit phone number
 document.getElementById('registerForm').addEventListener('submit', function (e) {
     const password = document.getElementById('regPassword').value;
     const confirmPassword = document.getElementById('confirmPassword').value;
@@ -250,14 +250,22 @@ document.getElementById('registerForm').addEventListener('submit', function (e) 
 
     // Check if passwords match
     if (password !== confirmPassword) {
-        e.preventDefault(); // Prevent form submission
-        alert("Passwords do not match. Please try again.");
+        e.preventDefault();
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Passwords do not match. Please try again.',
+        });
         return;
     }
 
-    // Check if phone number has exactly 9 digits
-    if (phoneNumber.length !== 9) {
-        e.preventDefault(); // Prevent form submission
-        alert("Phone number must contain exactly 9 digits.");
+    // Check if phone number has exactly 12 digits
+    if (phoneNumber.length !== 12) {
+        e.preventDefault();
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Phone number must contain exactly 12 digits.',
+        });
     }
 });
