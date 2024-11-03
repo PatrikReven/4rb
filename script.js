@@ -250,22 +250,14 @@ document.getElementById('registerForm').addEventListener('submit', function (e) 
 
     // Check if passwords match
     if (password !== confirmPassword) {
-        e.preventDefault();
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Passwords do not match. Please try again.',
-        });
+        e.preventDefault(); // Prevent form submission
+        alert("Passwords do not match. Please try again.");
         return;
     }
 
     // Check if phone number has exactly 12 digits
     if (phoneNumber.length !== 12) {
-        e.preventDefault();
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Phone number must contain exactly 12 digits.',
-        });
+        e.preventDefault(); // Prevent form submission
+        alert("Phone number must contain exactly 12 digits.");
     }
 });
