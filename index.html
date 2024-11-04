@@ -9,6 +9,10 @@
     <link rel="icon" type="image/x-icon" href="slike/favicon.ico">
     <!-- Povezava na CSS datoteko za oblikovanje -->
     <link rel="stylesheet" href="styles.css">
+    <!-- Dodajte to v <head> del vaše HTML datoteke -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
 </head>
 
 <body>
@@ -32,6 +36,14 @@
                 <input type="email" id="email" name="email" placeholder="Email" required>
                 <!-- Polje za vnos gesla -->
                 <input type="password" id="password" name="password" placeholder="Password" required>
+                <div class="social-login">
+                    <button class="social-btn apple">
+                        <img src="slike/apple.png" alt="Apple Logo"> Continue with Apple
+                    </button>
+                    <button class="social-btn google">
+                        <img src="slike/google.png" alt="Google Logo"> Continue with Google
+                    </button>
+                </div>
                 <!-- Gumb za prijavo -->
                 <button type="submit">Login</button>
                 <!-- Povezava za prehod na registracijo -->
@@ -48,7 +60,8 @@
                 <!-- Polje za vnos gesla -->
                 <input type="password" id="regPassword" name="password" placeholder="Password" required>
                 <!-- Polje za potrditev gesla -->
-                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password"
+                    required>
 
                 <!-- Izbirno polje za državo -->
                 <select id="country" name="country" required>
@@ -254,6 +267,14 @@
                 </select>
                 <!-- Polje za vnos telefonske številke -->
                 <input type="tel" id="phoneNumber" name="phone" placeholder="Phone Number" required maxlength="17">
+                <div class="social-login">
+                    <button class="social-btn apple">
+                        <img src="slike/apple.png" alt="Apple Logo"> Continue with Apple
+                    </button>
+                    <button class="social-btn google">
+                        <img src="slike/google.png" alt="Google Logo"> Continue with Google
+                    </button>
+                </div>
 
                 <!-- Gumb za registracijo -->
                 <button type="submit">Register</button>

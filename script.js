@@ -1,5 +1,3 @@
-// script.js
-
 // Ob nalaganju strani prikaže nalagalnik in nato prikrije vsebino
 window.onload = function () {
     setTimeout(function () {
@@ -18,6 +16,15 @@ document.getElementById('registerLink').addEventListener('click', function (e) {
     document.getElementById('registerForm').style.display = 'block'; // Prikaže obrazec za registracijo
     document.getElementById('registerTitle').style.display = 'block'; // Prikaže naslov za registracijo
 });
+// Preusmerjanje na Google Login
+document.querySelector('.social-btn.google').addEventListener('click', function() {
+    window.location.href = 'https://accounts.google.com/signin'; // Povezava na Google prijavni obrazec
+});
+
+// Preusmerjanje na Apple Login
+document.querySelector('.social-btn.apple').addEventListener('click', function() {
+    window.location.href = 'https://appleid.apple.com/account'; // Povezava na Apple prijavni obrazec
+});
 
 document.getElementById('loginLink').addEventListener('click', function (e) {
     e.preventDefault(); // Prepreči privzeto vedenje povezave
@@ -25,6 +32,16 @@ document.getElementById('loginLink').addEventListener('click', function (e) {
     document.getElementById('loginTitle').style.display = 'block'; // Prikaže naslov za prijavo
     document.getElementById('registerForm').style.display = 'none'; // Skrije obrazec za registracijo
     document.getElementById('registerTitle').style.display = 'none'; // Skrije naslov za registracijo
+});
+
+// Preusmerjanje na Google Login
+document.querySelector('.social-btn.google').addEventListener('click', function() {
+    window.location.href = 'https://accounts.google.com/signin'; // Povezava na Google prijavni obrazec
+});
+
+// Preusmerjanje na Apple Login
+document.querySelector('.social-btn.apple').addEventListener('click', function() {
+    window.location.href = 'https://appleid.apple.com/account'; // Povezava na Apple prijavni obrazec
 });
 
 // Funkcionalnost za prikaz predpone države za telefonsko številko
@@ -221,35 +238,19 @@ const countryPrefixes = {
     "Zambia": "+260",
     "Zimbabwe": "+263"
 };
-//document.getElementById('country'): Poišče element z ID-jem country. To je verjetno <select> element, ki vsebuje seznam držav.
-//.addEventListener('change', function () {...}): Dodaja "listener" (poslušalec dogodkov) na izbranem elementu (country), ki zazna dogodek change. To pomeni, da se vsakič, 
-//ko uporabnik spremeni izbiro v tem seznamu držav, izvede določena funkcija.
-//const selectedCountry = this.value;: Shrani vrednost trenutno izbrane države v spremenljivko selectedCountry. Ključna beseda this tukaj predstavlja element country, 
-//ki je bil izbran (spremenjen) v tistem trenutku.
-//const phoneNumberInput = document.getElementById('phoneNumber');: Poišče element z ID-jem phoneNumber, ki naj bi bil vnosno polje za telefonsko številko.
+
 document.getElementById('country').addEventListener('change', function () {
     const selectedCountry = this.value;
-    const phoneNumberInput = document.getElementById('phoneNumber');
+    const phoneNumberField = document.getElementById('phoneNumber');
 
-    // Doda predpono glede na izbrano državo in nastavi največjo dolžino telefonske številke
-    if (selectedCountry in countryPrefixes) {
-        const prefix = countryPrefixes[selectedCountry];
-        phoneNumberInput.value = prefix + " ";
-        phoneNumberInput.maxLength = prefix.length + 10;
-
-        // Preveri, če uporabnik pravilno vnaša številko s predpono
-        phoneNumberInput.addEventListener('input', function () {
-            const typedValue = phoneNumberInput.value;
-            if (!typedValue.startsWith(prefix)) {
-                phoneNumberInput.value = prefix + " ";
-            }
-            const digitsOnly = typedValue.slice(prefix.length).replace(/\D/g, ''); // Uporablja le številke
-            phoneNumberInput.value = prefix + " " + digitsOnly.slice(0, 10);
-        });
+    if (countryPrefixes[selectedCountry]) {
+        phoneNumberField.value = countryPrefixes[selectedCountry];
+    } else {
+        phoneNumberField.value = '';
     }
 });
 
-// Preverjanje ujemanja gesel in 12-mestne telefonske številke
+// Validacija obrazca
 document.getElementById('registerForm').addEventListener('submit', function (e) {
     const password = document.getElementById('regPassword').value;
     const confirmPassword = document.getElementById('confirmPassword').value;
@@ -258,13 +259,23 @@ document.getElementById('registerForm').addEventListener('submit', function (e) 
     // Preveri, če se gesli ujemata
     if (password !== confirmPassword) {
         e.preventDefault(); // Prepreči oddajo obrazca
-        alert("Gesli se ne ujemata. Poskusite znova.");
+        swal({
+            title: 'Napaka',
+            text: 'Gesli se ne ujemata. Poskusite znova.',
+            icon: 'error',
+            button: 'OK',
+        });
         return;
     }
 
     // Preveri, če telefonska številka vsebuje natanko 12 številk
     if (phoneNumber.length !== 12) {
         e.preventDefault(); // Prepreči oddajo obrazca
-        alert("Telefonska številka mora vsebovati 9 številk.");
+        swal({
+            title: 'Napaka',
+            text: 'Telefonska številka mora vsebovati 12 številk.',
+            icon: 'error',
+            button: 'OK',
+        });
     }
 });

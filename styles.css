@@ -29,17 +29,17 @@
 /* Osnovno oblikovanje za celotno stran */
 body {
     font-family: 'GothamBook', Arial, sans-serif;
-    background: url('slike/ozadje.jpg') no-repeat center fixed; /* Uporaba slike za ozadje */
-    background-size: cover; /* Ozadje se razteza čez celo stran */
+    background: url('slike/ozadje.jpg') no-repeat center fixed;
+    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     color: white;
-    backdrop-filter: blur(5px); /* Zameglitev ozadja */
+    backdrop-filter: blur(5px);
 }
 
-/* Oblikovanje nalagalnika (loader) s črnim ozadjem */
+/* Oblikovanje nalagalnika (loader) */
 #loader-container {
     position: absolute;
     top: 0;
@@ -50,35 +50,38 @@ body {
     justify-content: center;
     align-items: center;
     background-color: black;
-    z-index: 9999; /* Zgornja plast za nalagalnik */
+    z-index: 9999;
     opacity: 1;
-    transition: opacity 0.3s ease-out; /* Prehod za postopno izginjanje */
+    transition: opacity 0.3s ease-out;
 }
 
-/* Oblikovanje glavne vsebine */
+#loader-container.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+/* Glavna vsebina */
 .container {
-    background-color: rgba(0, 0, 0, 0.85); /* Prosojno ozadje */
+    background-color: rgba(0, 0, 0, 0.85);
     border-radius: 10px;
     padding: 40px;
     width: 400px;
     text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Senca za dvignjen učinek */
-    transition: transform 0.3s ease-in-out; /* Animacija na prehod */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease-in-out;
 }
 
-/* Efekt povečave in sence ob premiku miške nad vsebino */
 .container:hover {
     transform: scale(1.03);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
 }
 
-/* Oblikovanje za logo sliko */
 .logo img {
     width: 150px;
     margin-bottom: 20px;
 }
 
-/* Oblikovanje za vnosna polja (email, geslo, besedilo, izbor in telefonska številka) */
 input[type="email"],
 input[type="password"],
 input[type="text"],
@@ -89,13 +92,12 @@ input[type="tel"] {
     margin: 10px 0;
     border-radius: 5px;
     border: none;
-    transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
     font-family: 'GothamLight', Arial, sans-serif;
-    background-color: rgba(255, 255, 255, 0.2); /* Polprosojno ozadje */
+    background-color: rgba(255, 255, 255, 0.2);
     color: white;
+    transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 
-/* Efekt ob kliku na vnosna polja - poudarek */
 input[type="email"]:focus,
 input[type="password"]:focus,
 input[type="text"]:focus,
@@ -103,11 +105,10 @@ select:focus,
 input[type="tel"]:focus {
     box-shadow: 0 0 8px #1DB954;
     outline: none;
-    border: 2px solid #1DB954; /* Dodana obroba ob kliku */
-    background-color: rgba(255, 255, 255, 0.3); /* Svetlejše ozadje */
+    border: 2px solid #1DB954;
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
-/* Oblikovanje gumba za prijavo/registracijo */
 button {
     width: 100%;
     padding: 12px;
@@ -120,45 +121,61 @@ button {
     transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-/* Efekt gumba ob premiku miške */
 button:hover {
     background-color: #1ed760;
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
-/* Oblikovanje izbirnega polja (dropdown) */
-select {
-    width: 100%;
+/* Social Login Buttons */
+.social-login {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    margin-bottom: 20px; /* Dodano za večji odmik od gumbov Login/Register */
+    justify-content: center;
+}
+
+
+.social-btn {
     padding: 12px;
-    margin: 10px 0;
-    border-radius: 5px;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
     border: none;
-    font-family: 'GothamLight', Arial, sans-serif;
-    background-color: rgba(255, 255, 255, 0.2); /* Polprosojno ozadje */
+    border-radius: 5px;
+    font-family: 'GothamBold', Arial, sans-serif;
+    font-size: 14px;
     color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
 }
 
-/* Oblikovanje možnosti v dropdown meniju */
-select option {
-    background-color: #333;
-    color: white;
-    padding: 10px; /* Dodatni prostor za lažje izbiranje */
+.social-btn img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
 }
 
-/* Efekt ob premiku miške nad možnost v dropdown meniju */
-select option:hover {
-    background-color: #1DB954;
-    color: white;
+.social-btn.apple {
+    background-color: #000;
 }
 
-/* Slog za odstavke */
+.social-btn.google {
+    background-color: #DB4437;
+}
+
+.social-btn:hover {
+    opacity: 0.9;
+}
+
 p {
     margin-top: 20px;
     font-family: 'GothamBookItalic', Arial, sans-serif;
 }
 
-/* Oblikovanje povezav */
 a {
     color: #1DB954;
     text-decoration: none;
@@ -166,30 +183,22 @@ a {
     font-family: 'GothamBoldItalic', Arial, sans-serif;
 }
 
-/* Efekt ob premiku miške nad povezavo */
 a:hover {
     text-decoration: underline;
     color: #1ed760;
 }
 
-/* Efekt postopnega izginjanja nalagalnika */
-#loader-container.fade-out {
-    opacity: 0;
-    pointer-events: none;
-}
-
-/* Prilagoditve za mobilne naprave */
 @media (max-width: 500px) {
     .container {
-        width: 90%; /* Prilagoditev širine vsebine */
+        width: 90%;
         padding: 20px;
     }
 
     .logo img {
-        width: 120px; /* Manjša velikost logotipa */
+        width: 120px;
     }
 
     button {
-        font-size: 14px; /* Manjša velikost pisave za gumbe */
+        font-size: 14px;
     }
 }
