@@ -137,39 +137,40 @@ button:hover {
 }
 
 
+.social-btn img {
+    width: 18px; /* Nastavi širino ikone */
+    height: 18px; /* Nastavi višino ikone */
+    margin-right: 8px; /* Prostor med ikono in tekstom */
+}
+
 .social-btn {
-    padding: 12px;
-    font-size: 15px;
+    padding: 8px 12px;
+    font-size: 13px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
+    border: 2px solid white;
+    border-radius: 4px;
     font-family: 'GothamBold', Arial, sans-serif;
-    font-size: 14px;
     color: white;
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-}
-
-.social-btn img {
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
+    background-color: black;
+    transition: opacity 0.3s ease-in-out;
+    width: 160px;
 }
 
 .social-btn.apple {
-    background-color: #000;
+    border-color: #A3AAAE;
 }
 
 .social-btn.google {
-    background-color: #DB4437;
+    border-color: #DB4437;
 }
 
 .social-btn:hover {
-    opacity: 0.9;
+    opacity: 0.9; /* Le prosojnost se spremeni */
 }
+
 
 p {
     margin-top: 20px;

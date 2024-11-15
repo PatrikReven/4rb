@@ -16,15 +16,14 @@ document.getElementById('registerLink').addEventListener('click', function (e) {
     document.getElementById('registerForm').style.display = 'block'; // Prikaže obrazec za registracijo
     document.getElementById('registerTitle').style.display = 'block'; // Prikaže naslov za registracijo
 });
-// Preusmerjanje na Google Login
 document.querySelector('.social-btn.google').addEventListener('click', function() {
-    window.location.href = 'https://accounts.google.com/signin'; // Povezava na Google prijavni obrazec
+    alert('Redirecting to Google login...');
 });
 
-// Preusmerjanje na Apple Login
 document.querySelector('.social-btn.apple').addEventListener('click', function() {
-    window.location.href = 'https://appleid.apple.com/account'; // Povezava na Apple prijavni obrazec
+    alert('Redirecting to Apple login...');
 });
+
 
 document.getElementById('loginLink').addEventListener('click', function (e) {
     e.preventDefault(); // Prepreči privzeto vedenje povezave
