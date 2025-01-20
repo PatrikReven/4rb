@@ -249,7 +249,15 @@ document.getElementById('country').addEventListener('change', function () {
     }
 });
 
-// Validacija obrazca
+// Za Login obrazec
+document.getElementById('loginForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    // Če so vsa zahtevana polja izpolnjena (zahvaljujoč atributom "required" v HTML-ju),
+    // preusmerimo uporabnika na določeno stran.
+    window.location.href = 'https://patrikreven.github.io/logo/';
+});
+
+// Validacija in preusmeritev za Register obrazec
 document.getElementById('registerForm').addEventListener('submit', function (e) {
     const password = document.getElementById('regPassword').value;
     const confirmPassword = document.getElementById('confirmPassword').value;
@@ -257,7 +265,7 @@ document.getElementById('registerForm').addEventListener('submit', function (e) 
 
     // Preveri, če se gesli ujemata
     if (password !== confirmPassword) {
-        e.preventDefault(); // Prepreči oddajo obrazca
+        e.preventDefault();
         swal({
             title: 'Napaka',
             text: 'Gesli se ne ujemata. Poskusite znova.',
@@ -269,12 +277,17 @@ document.getElementById('registerForm').addEventListener('submit', function (e) 
 
     // Preveri, če telefonska številka vsebuje natanko 12 številk
     if (phoneNumber.length !== 12) {
-        e.preventDefault(); // Prepreči oddajo obrazca
+        e.preventDefault();
         swal({
             title: 'Napaka',
             text: 'Telefonska številka mora vsebovati 12 številk.',
             icon: 'error',
             button: 'OK',
         });
+        return;
     }
+
+    // Če so vsi pogoji izpolnjeni, preprečimo privzeto oddajo obrazca in preusmerimo uporabnika.
+    e.preventDefault();
+    window.location.href = 'https://patrikreven.github.io/logo/';
 });
